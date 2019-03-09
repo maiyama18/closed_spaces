@@ -1,5 +1,5 @@
 import unittest
-from radix import convert_number
+from radix import convert_number, num_closed_spaces
 
 
 class TestConvertNumber(unittest.TestCase):
@@ -14,6 +14,18 @@ class TestConvertNumber(unittest.TestCase):
             with self.subTest(msg=f'radix: {radix}, number: {number}'):
                 self.assertEqual(convert_number(number, radix), expected)
 
+    def test_num_closed_spaces(self):
+        tests = [
+            ['489', 4],
+            ['1001', 2],
+            ['2AF', 1],
+        ]
+
+        for [num_str, expected] in tests:
+            with self.subTest(msg=f'num_str: {num_str}'):
+                self.assertEqual(num_closed_spaces(num_str), expected)
+
 
 if __name__ == '__main__':
     unittest.main()
+
